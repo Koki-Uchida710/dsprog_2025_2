@@ -47,7 +47,7 @@ class CalculatorApp(ft.Container):
         self.border_radius = ft.border_radius.all(20)
         self.padding = 20
 
-        # 科学計算用キーパッド（初期状態は非表示）
+        # 科学計算用キーパッド
         self.sci_rows = ft.Column(
             visible=False,
             controls=[
