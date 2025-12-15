@@ -2,7 +2,6 @@ import flet as ft
 import math
 
 
-# --- ボタン定義 ---
 class CalcButton(ft.ElevatedButton):
     def __init__(self, text, button_clicked, expand=1):
         super().__init__()
