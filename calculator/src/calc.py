@@ -1,3 +1,7 @@
+# Based on the Flet Calculator example.
+# Extended with Scientific Calculation features (sin, cos, log, etc.).
+# Original Source: https://github.com/flet-dev/examples/tree/main/python/apps/calc
+
 import flet as ft
 import math
 
