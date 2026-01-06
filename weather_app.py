@@ -11,7 +11,6 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.padding = 0
 
-    # 背景コンテナ
     bg_container = ft.Container(
         bgcolor="#e3f2fd",
         expand=True,
@@ -24,9 +23,6 @@ def main(page: ft.Page):
         padding=30,
     )
 
-    # --------------------------------------------------
-    # データ取得ロジック（関数）
-    # --------------------------------------------------
     def get_area_options():
         """地域リストを取得し、Dropdownの選択肢(Option)のリストとして返す"""
         try:
@@ -35,7 +31,6 @@ def main(page: ft.Page):
             data = response.json()
             offices = data['offices']
             
-            # FletのDropdown用オプションを作成
             options = []
             for code, info in offices.items():
                 options.append(ft.dropdown.Option(key=code, text=info['name']))
@@ -89,9 +84,6 @@ def main(page: ft.Page):
                 "icon_color": "#f44336"
             }
 
-    # --------------------------------------------------
-    # イベントハンドラ
-    # --------------------------------------------------
     def on_click_get_weather(e):
         # 地域が選択されていない場合
         if not region_dropdown.value:
@@ -117,9 +109,6 @@ def main(page: ft.Page):
         result_icon.color = weather_data['icon_color']
         page.update()
 
-    # --------------------------------------------------
-    # UIパーツの作成
-    # --------------------------------------------------
     # タイトル
     header = ft.Container(
         content=ft.Row(
@@ -136,7 +125,6 @@ def main(page: ft.Page):
     )
 
     # 地域選択ドロップダウン
-    # 起動時にAPIを叩いてリストを作る
     region_options = get_area_options()
     region_dropdown = ft.Dropdown(
         label="地域を選択",
@@ -160,7 +148,7 @@ def main(page: ft.Page):
         spacing=20,
     )
 
-    # 結果表示エリア（カードの中に入れると綺麗に見えます）
+    # 結果表示エリア
     result_icon = ft.Icon(icon=ft.Icons.WB_SUNNY, size=50, color="#ffeb3b")
     result_text = ft.Text(value="ここに結果が表示されます", size=20, color="#424242")
     result_row = ft.Row(
@@ -180,9 +168,6 @@ def main(page: ft.Page):
         shadow_color="#1976d2",
     )
 
-    # --------------------------------------------------
-    # ページへの追加
-    # --------------------------------------------------
     bg_container.content.controls.extend([
         header,
         ft.Divider(height=20, color="#1976d2"),
